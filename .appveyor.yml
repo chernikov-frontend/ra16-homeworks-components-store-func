@@ -1,31 +1,28 @@
-version: 1.0.{build}
-image: Visual Studio 2022
+image: Ubuntu2204  # образ для сборки
 
-init:
-  - git config --global core.autocrlf true
+stack: node 20  # окружение
 
-# Указываем, какие версии Node.js использовать
-environment:
-  matrix:
-    - nodejs_version: "18"
+branches:
+  only:
+    - master  # ветка git
+    - main
+
+cache: node_modules  # кеширование
 
 install:
-  # Устанавливаем Node.js
-  - ps: Install-Product node $env:nodejs_version
-  # Устанавливаем зависимости
-  - yarn install
+  - yarn  # команда установки зависимостей
+
+build: off  # отключаем встроенную в appveyor систему сборки
 
 build_script:
-  - yarn build  # Сборка проекта (создаст папку dist)
+  - yarn build   # команда сборки
 
-artifacts:
-  - path: dist
-    name: build
+test_script:
+  - yarn lint # скрипт тестирования
 
-deploy_script:
-  - ps: |
-      git config --global user.email "your-email@example.com"
-      git config --global user.name "your-github-username"
-      git remote set-url origin https://your-github-token@github.com/your-github-username/your-repository.git
-      yarn build
-      npx gh-pages -d dist
+deploy_script:  # скрипт развёртывания
+  - git config --global credential.helper store
+  - git config --global user.name AppVeyor
+  - git config --global user.email ci@appveyor.com
+  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"
+  - npx gh-pages -d dist -u "appveyor-bot <ci@appveyor>"
