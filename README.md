@@ -1,8 +1,8 @@
-# React + Vite
+# Домашнее задание к занятию «Компоненты»
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+[![Build status](https://ci.appveyor.com/api/projects/status/github/chernikov-frontend/ra16-homeworks-components-store-func?branch=main&svg=true)](https://ci.appveyor.com/project/chernikov-frontend/ra16-homeworks-components-store-func)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Ссылка на GitHub Pages
+[Посмотреть на GitHub Pages](https://chernikov-frontend.github.io/ra16-homeworks-components-store-func/)
